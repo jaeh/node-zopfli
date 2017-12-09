@@ -52,7 +52,7 @@
       "include_dirs": [
         "zopfli/src/zopfli",
         "zopfli/src/zopflipng",
-        "<!(node -e \"require('nan')\")"
+        "<!@(node -p \"require('node-addon-api').include\")"
       ],
       "sources": [
         "src/zopfli-binding.cc",

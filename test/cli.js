@@ -23,7 +23,8 @@ describe('zopfli cli', function() {
   it('should compress files', function(done) {
     var fixture = path.join(__dirname, 'fixtures/test.css');
     exec(
-      'node ' + path.join(__dirname, '../bin/zopfli') + ' ' + fixture,
+      'node --napi-modules --no-warnings ' +
+      path.join(__dirname, '../bin/zopfli') + ' ' + fixture,
       function(error, stdout, stderr) {
         assert.equal(error, null);
         assert.equal(stderr, '');

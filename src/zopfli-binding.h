@@ -1,15 +1,17 @@
 #ifndef _NODE_ZOPFLI_H_
 #define _NODE_ZOPFLI_H_
-#include <node.h>
+#include <napi.h>
+#include <uv.h>
 #include <v8.h>
-#include "nan.h"
+#include "napi.h"
+#include "uv.h"
 
 namespace nodezopfli {
 
 class CompressBinding {
  public:
-  static NAN_METHOD(Async);
-  static NAN_METHOD(Sync);
+  static Napi::Value Async(const Napi::CallbackInfo& info);
+  static Napi::Value Sync(const Napi::CallbackInfo& info);
 };
 
 }
