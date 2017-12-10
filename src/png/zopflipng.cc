@@ -21,7 +21,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'lossy_transparent'").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong type for option 'lossy_transparent'").ThrowAsJavaScriptException();
 
       }
       png_options.lossy_transparent = option_value.As<Napi::Number>().Int32Value();
@@ -32,7 +32,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'lossy_8bit'").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong type for option 'lossy_8bit'").ThrowAsJavaScriptException();
 
       }
       png_options.lossy_8bit = option_value.As<Napi::Number>().Int32Value();
@@ -58,14 +58,14 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
           else if(strStrategy.compare("predefined") == 0) { strategy = kStrategyPredefined; }
           else if(strStrategy.compare("bruteforce") == 0) { strategy = kStrategyBruteForce; }
           else {
-            Napi::Error::New(options.Env(), (std::string("Wrong strategy : ") + strStrategy).c_str()).ThrowAsJavaScriptException();
+            Napi::TypeError::New(options.Env(), (std::string("Wrong strategy : ") + strStrategy).c_str()).ThrowAsJavaScriptException();
 
           }
           png_options.filter_strategies.push_back(strategy);
         }
       } else {
         //Wrong
-        Napi::Error::New(env, "Wrong type for option 'filter_strategies'").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong type for option 'filter_strategies'").ThrowAsJavaScriptException();
 
       }
     }
@@ -75,7 +75,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'auto_filter_strategy'").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong type for option 'auto_filter_strategy'").ThrowAsJavaScriptException();
 
       }
       png_options.auto_filter_strategy = option_value.As<Napi::Number>().Int32Value();
@@ -87,7 +87,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'use_zopfli'").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong type for option 'use_zopfli'").ThrowAsJavaScriptException();
 
       }
       png_options.use_zopfli = option_value.As<Napi::Number>().Int32Value();
@@ -98,8 +98,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'num_iterations'").ThrowAsJavaScriptException();
-
+        Napi::TypeError::New(env, "Wrong type for option 'num_iterations'").ThrowAsJavaScriptException();
       }
       png_options.num_iterations = option_value.As<Napi::Number>().Int32Value();
     }
@@ -109,8 +108,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsNumber()) {
-        Napi::Error::New(env, "Wrong type for option 'num_iterations_large'").ThrowAsJavaScriptException();
-
+        Napi::TypeError::New(env, "Wrong type for option 'num_iterations_large'").ThrowAsJavaScriptException();
       }
       png_options.num_iterations_large = option_value.As<Napi::Number>().Int32Value();
     }
@@ -121,16 +119,14 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
     if ((options).Has(option_name)) {
       option_value = (options).Get(option_name);
       if(!option_value.IsString()) {
-        Napi::Error::New(env, "Wrong type for option 'block_split_strategy'").ThrowAsJavaScriptException();
-
+        Napi::TypeError::New(env, "Wrong type for option 'block_split_strategy'").ThrowAsJavaScriptException();
       }
       if(strStrategy.compare("none") == 0) { png_options.block_split_strategy = 0; }
       else if(strStrategy.compare("first") == 0) { png_options.block_split_strategy = 1; }
       else if(strStrategy.compare("last") == 0) { png_options.block_split_strategy = 2; }
       else if(strStrategy.compare("both") == 0) { png_options.block_split_strategy = 3; }
       else {
-        Napi::Error::New(env, "Wrong value for option 'block_split_strategy'").ThrowAsJavaScriptException();
-
+        Napi::TypeError::New(env, "Wrong value for option 'block_split_strategy'").ThrowAsJavaScriptException();
       }
     }
   }
@@ -140,14 +136,12 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
 Napi::Value PNGDeflate(const Napi::CallbackInfo& info) {
   Napi::Env& env = info.Env();
   if(info.Length() < 1 || !info[0].IsString()) {
-    Napi::Error::New(env, "First argument must be a string").ThrowAsJavaScriptException();
-
+    Napi::TypeError::New(env, "First argument must be a string").ThrowAsJavaScriptException();
   }
   std::string imageName(info[0].As<Napi::String>().Utf8Value().c_str());
 
   if(info.Length() < 2 || !info[1].IsString()) {
-    Napi::Error::New(env, "First argument must be a string").ThrowAsJavaScriptException();
-
+    Napi::TypeError::New(env, "First argument must be a string").ThrowAsJavaScriptException();
   }
   std::string out_filename(info[1].As<Napi::String>().Utf8Value().c_str());
 

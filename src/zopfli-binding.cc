@@ -14,7 +14,7 @@ inline void ParseArgs(const Napi::CallbackInfo& info, ZopfliFormat& format, Zopf
   format = ZOPFLI_FORMAT_GZIP;
 
   if(info.Length() < 1 || !info[0].IsBuffer()) {
-    Napi::Error::New(env, "First argument must be a buffer").ThrowAsJavaScriptException();
+    Napi::TypeError::New(env, "First argument must be a buffer").ThrowAsJavaScriptException();
   }
 
   if(info.Length() >= 2 && info[1].IsString()) {
@@ -26,11 +26,11 @@ inline void ParseArgs(const Napi::CallbackInfo& info, ZopfliFormat& format, Zopf
     } else if(given_format.compare("deflate") == 0) {
       format = ZOPFLI_FORMAT_DEFLATE;
     } else {
-      Napi::Error::New(env, "Invalid Zopfli format").ThrowAsJavaScriptException();
+      Napi::TypeError::New(env, "Invalid Zopfli format").ThrowAsJavaScriptException();
 
     }
   } else {
-    Napi::Error::New(env, "Second argument must be a string").ThrowAsJavaScriptException();
+    Napi::TypeError::New(env, "Second argument must be a string").ThrowAsJavaScriptException();
 
   }
 
@@ -98,7 +98,6 @@ inline void ParseArgs(const Napi::CallbackInfo& info, ZopfliFormat& format, Zopf
     Napi::TypeError::New(env, "Third argument must be an object").ThrowAsJavaScriptException();
 
   }
-  //return env.Undefined();
 }
 
 
@@ -156,7 +155,7 @@ Napi::Value CompressBinding::Async(const Napi::CallbackInfo& info) {
   ZopfliFormat format;
   ZopfliOptions zopfli_options;
   if(info.Length() == 0 || (info.Length() >= 1 && !info[info.Length()-1].IsFunction())) {
-    Napi::Error::New(env, "Last argument must be a callback function").ThrowAsJavaScriptException();
+    Napi::TypeError::New(env, "Last argument must be a callback function").ThrowAsJavaScriptException();
 
   }
   ParseArgs(info, format, zopfli_options);
