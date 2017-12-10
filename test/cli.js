@@ -22,8 +22,12 @@ describe('zopfli cli', function() {
 
   it('should compress files', function(done) {
     var fixture = path.join(__dirname, 'fixtures/test.css');
+
+    // --no-warnings is needed since otherwise Node
+    // will print out a warning when an N-API module is loaded
+    // while the feature is still in experimental state
     exec(
-      'node --napi-modules --no-warnings ' +
+      'node --no-warnings ' +
       path.join(__dirname, '../bin/zopfli') + ' ' + fixture,
       function(error, stdout, stderr) {
         assert.equal(error, null);

@@ -1,5 +1,4 @@
 #include "napi.h"
-#include "uv.h"
 
 #ifndef NODE_ZOPFLI_PNG_H_
 #define NODE_ZOPFLI_PNG_H_
