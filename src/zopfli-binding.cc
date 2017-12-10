@@ -1,5 +1,4 @@
 #include <napi.h>
-#include <uv.h>
 #include "zopfli.h"
 #include "zopfli-binding.h"
 #include "png/zopflipng.h"
@@ -131,7 +130,6 @@ class CompressWorker : public Napi::AsyncWorker {
   // so it is safe to use V8 again
   void OnOK() override {
     Napi::HandleScope scope(Env());
-    printf("Result size is: %d\n", resultsize);
     Callback().MakeCallback(
       Receiver().Value(),
       {

@@ -1,8 +1,4 @@
 #include <napi.h>
-#include <uv.h>
-#include <v8.h>
-#include "napi.h"
-#include "uv.h"
 
 #include "lodepng/lodepng.h"
 #include "zopflipng_lib.h"
