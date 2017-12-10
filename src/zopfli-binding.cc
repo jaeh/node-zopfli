@@ -110,9 +110,9 @@ class CompressWorker : public Napi::AsyncWorker {
   : Napi::AsyncWorker(callback), format(format), zopfli_options(zopfli_options) {
     Napi::HandleScope scope(Env());
     // Handle<Object> object = args[0]->ToObject();
-    size_t length = buffer.As<Napi::Buffer<char>>().Length();
-    const char *data = buffer.As<Napi::Buffer<char>>().Data();
-    input = std::string(data, length);
+    size_t length = buffer.As<Napi::Buffer<unsigned char>>().Length();
+    const unsigned char *data = buffer.As<Napi::Buffer<unsigned char>>().Data();
+    input = std::string((char*) data, length);
     resultdata = 0;
     resultsize = 0;
   }
@@ -137,7 +137,7 @@ class CompressWorker : public Napi::AsyncWorker {
       Receiver().Value(),
       {
         Env().Null(), 
-        Napi::Buffer<char>::New(Env(), (char*)resultdata, resultsize)
+        Napi::Buffer<unsigned char>::New(Env(), (unsigned char*)resultdata, resultsize)
       });
   }
 
@@ -180,7 +180,7 @@ Napi::Value CompressBinding::Sync(const Napi::CallbackInfo& info) {
   ZopfliCompress(&zopfli_options, format,
     inbufferdata, inbuffersize,
     &out, &outsize);
-  return Napi::Buffer<char>::New(info.Env(), (char*)out, outsize);
+  return Napi::Buffer<unsigned char>::New(info.Env(), out, outsize);
 }
 
 unsigned updateAdler32(unsigned int adler, const unsigned char* data, size_t size)
