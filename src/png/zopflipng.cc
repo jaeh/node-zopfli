@@ -8,7 +8,7 @@ using namespace Napi;
 void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
   Napi::String option_name;
   Napi::Value option_value;
-  Napi::Env& env = options.Env();
+  const Napi::Env env = options.Env();
 
   if(!options.IsEmpty()) {
 
@@ -130,7 +130,7 @@ void parseOptions(const Napi::Object& options, ZopfliPNGOptions& png_options) {
 
 
 Napi::Value PNGDeflate(const Napi::CallbackInfo& info) {
-  Napi::Env& env = info.Env();
+  const Napi::Env env = info.Env();
   if(info.Length() < 1 || !info[0].IsString()) {
     Napi::TypeError::New(env, "First argument must be a string").ThrowAsJavaScriptException();
   }

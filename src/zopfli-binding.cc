@@ -8,7 +8,7 @@ namespace nodezopfli {
 using namespace Napi;
 
 inline void ParseArgs(const Napi::CallbackInfo& info, ZopfliFormat& format, ZopfliOptions& zopfli_options) {
-  Napi::Env& env = info.Env();
+  const Napi::Env env = info.Env();
   ZopfliInitOptions(&zopfli_options);
   format = ZOPFLI_FORMAT_GZIP;
 
@@ -149,7 +149,7 @@ class CompressWorker : public Napi::AsyncWorker {
 // CompressBinding
 // PUBLIC
 Napi::Value CompressBinding::Async(const Napi::CallbackInfo& info) {
-  Napi::Env& env = info.Env();
+  const Napi::Env env = info.Env();
   ZopfliFormat format;
   ZopfliOptions zopfli_options;
   if(info.Length() == 0 || (info.Length() >= 1 && !info[info.Length()-1].IsFunction())) {
@@ -201,7 +201,7 @@ unsigned updateAdler32(unsigned int adler, const unsigned char* data, size_t siz
 }
 
 Napi::Value Adler32(const Napi::CallbackInfo& info) {
-  Napi::Env& env = info.Env();
+  const Napi::Env env = info.Env();
   if(info.Length() >= 1 && !info[0].IsNumber()) {
     Napi::TypeError::New(env, "adler must be an unsigned integer").ThrowAsJavaScriptException();
     return env.Null();
@@ -219,10 +219,6 @@ Napi::Value Adler32(const Napi::CallbackInfo& info) {
   adler = updateAdler32(adler, data, inbuffersize);
   return Napi::Number::New(env, adler);
 }
-
-// void Init(Napi::Env env, Napi::Object exports, Napi::Object module) {
-//   NAN_EXPORT(target, Foo);
-// }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "deflate"), Napi::Function::New(env, CompressBinding::Async));

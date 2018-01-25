@@ -46,7 +46,8 @@
           }
         }
       },
-
+      'cflags!': [ '-fno-exceptions' ],
+      'cflags_cc!': [ '-fno-exceptions' ],      
       "target_name": "<(module_name)",
       'lflags': ['-lm'],
       "include_dirs": [
