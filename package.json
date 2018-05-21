@@ -6,7 +6,8 @@
   "contributors": [
     "duralog <funisher@gmail.com>",
     "MayhemYDG <stepien.nicolas@gmail.com>",
-    "XhmikosR <xhmikosr@gmail.com>"
+    "XhmikosR <xhmikosr@gmail.com>",
+    "Jascha Ehrenreich <j@jaeh.at>"
   ],
   "license": "MIT",
   "keywords": [
@@ -14,45 +15,43 @@
     "zlib",
     "compress",
     "gzip",
-    "deflate"
+    "deflate",
+    "es6"
   ],
-  "homepage": "https://github.com/pierreinglebert/node-zopfli",
+  "homepage": "https://github.com/jaeh/node-zopfli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pierreinglebert/node-zopfli.git"
+    "url": "https://github.com/jaeh/node-zopfli.git"
   },
   "bugs": {
-    "url": "https://github.com/pierreinglebert/node-zopfli/issues"
+    "url": "https://github.com/jaeh/node-zopfli/issues"
   },
   "engines": {
     "node": ">=0.12"
   },
   "binary": {
     "module_name": "zopfli",
-    "module_path": "./lib/binding/{node_abi}-{platform}-{arch}",
-    "remote_path": "./{configuration}",
-    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-    "host": "https://node-zopfli.s3.amazonaws.com"
+    "module_path": "./lib/binding/{node_abi}-{platform}-{arch}"
   },
   "dependencies": {
-    "commander": "^2.8.1",
-    "defaults": "^1.0.2",
-    "nan": "^2.0.0",
-    "node-pre-gyp": "^0.10.0"
+    "commander": "2.8.1",
+    "defaults": "1.0.2",
+    "nan": "2.0.0",
+    "node-pre-gyp": "0.10.0"
   },
   "devDependencies": {
-    "async": "^2.0.0",
-    "aws-sdk": "^2.4.8",
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.1",
+    "async": "2.0.0",
+    "aws-sdk": "2.4.8",
+    "chai": "4.1.2",
+    "coveralls": "3.0.1",
     "eslint": "4.19.1",
-    "istanbul": "^0.4.4",
-    "mocha": "^5.2.0",
-    "randomstring": "^1.0.5"
+    "istanbul": "0.4.4",
+    "mocha": "5.2.0",
+    "randomstring": "1.0.5"
   },
   "bin": {
-    "zopfli": "bin/zopfli",
-    "zopflipng": "bin/zopflipng"
+    "zopfli": "bin/zopfli.js",
+    "zopflipng": "bin/zopflipng.js"
   },
   "files": [
     "bin",
