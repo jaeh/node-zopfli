@@ -1,5 +1,7 @@
-/build/
-/lib/binding/
-/node_modules/
-/npm-debug.log
+build
+lib/binding
+node_modules
+npm-debug.log
 /coverage
+./test/fixtures/test.css.gz
+.nyc_output

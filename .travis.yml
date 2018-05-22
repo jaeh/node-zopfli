@@ -12,9 +12,9 @@ branches:
 
 env:
   matrix:
-    - NODE_VERSION="0.10"
-    - NODE_VERSION="0.12"
-    - NODE_VERSION="iojs"
+    - NODE_VERSION="8"
+    - NODE_VERSION="9"
+    - NODE_VERSION="10"
   global:
     - secure: IxORreMUlF3CYU6129/JAQ00ZMR+yxrD8x+nAka8T+qQ8MI3OBkONwYeOXknE0PDgWvD315gPK9KQXSplruEuz8mmxjUJNOzvAikUMF7hVUIl79hSwLDkFZ1MC0rV90dbb7hOlxD1EjqASqTbEJPNarDzIcDxf/G6cubPgnxNbE=
     - secure: eGf5iU0ixKUhp4z+/o8/6A7lvL33nZFCS510gJzytgh0qpACHSYz+2KzNT+ddYRE2Mobj3WPqxXRq8mtMAlyuXogwQhmnYOBtskSkPUK+u5DhX+s1IQHu7DyGfx+h44jlOX2D3peKL0HOLl+SPDkzAt4Xec/W3VNPHolQDy9Tjg=
@@ -24,14 +24,24 @@ matrix:
 
 sudo: false
 
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+
 before_install:
+  - export CXX=g++
+  - export CC=gcc
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8; fi
   - rm -rf ~/.nvm/ && git clone --depth 1 https://github.com/creationix/nvm.git ~/.nvm
   - source ~/.nvm/nvm.sh
   - nvm install $NODE_VERSION
   - nvm use $NODE_VERSION
 
 install:
-  - npm install --build-from-source
+  - npm install
 
 script:
   - npm run lint
@@ -39,5 +49,3 @@ script:
 
 after_success:
   - npm run coveralls
-  - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
-  - if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then ./node_modules/.bin/node-pre-gyp package publish; fi;
