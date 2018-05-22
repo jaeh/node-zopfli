@@ -1,13 +1,13 @@
-# node-zopfli
+# node-zopfli-es
+
+Update of [node-zopfli](https://npmjs.com/package/node-zopfli).
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Linux Build Status][travis-image]][travis-url]
+[![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Dependency Status][dep-image]][dep-url]
-[![devDependency Status][devDep-image]][devDep-url]
-[![Stories in Ready][waffle-image]][waffle-url]
 
-Bindings for [Zopfli](https://en.wikipedia.org/wiki/Zopfli) compressing library.
+Node.js bindings for [Zopfli](https://en.wikipedia.org/wiki/Zopfli) compressing library.
 Compress gzip files 5% better compared to gzip.
 
 It is considerably slower than gzip (~100x) so you may want to use it only for static content and cached resources.
@@ -16,20 +16,20 @@ It is considerably slower than gzip (~100x) so you may want to use it only for s
 ## Prerequisites for building
 
 * Python 2.7
-* make (unix) or Visual Studio Express (Windows) see [Node Building tools](https://github.com/TooTallNate/node-gyp#installation)
+* GCC and Make (Unix) or Visual Studio Express (Windows), see [Node Building tools](https://github.com/TooTallNate/node-gyp#installation)
 
 ## Usage
 
 ### Install
 
 ```shell
-npm install node-zopfli
+npm install node-zopfli-es
 ```
 
 or if you want zopfli binary globally
 
 ```shell
-npm install -g node-zopfli
+npm install -g node-zopfli-es
 ```
 
 ### Binary (from command line)
@@ -49,53 +49,65 @@ zopflipng file.png out.png
 #### Stream (async):
 
 ```js
-var zopfli = require('node-zopfli');
-fs.createReadStream('file.js')
+const zopfli = require('node-zopfli-es')
+fs
+  .createReadStream('file.js')
   .pipe(zopfli.createGzip(options))
-  .pipe(fs.createWriteStream('file.js.gz'));
+  .pipe(fs.createWriteStream('file.js.gz'))
 ```
 
 Instead of `zopfli.createGzip`, you can also use
 
 ```js
-new Zopfli('gzip', options);
+new Zopfli('gzip', options)
 ```
 
 #### Buffer (async):
 
 ```js
-var zopfli = require('node-zopfli');
-var input = new Buffer('I want to be compressed');
-zopfli.deflate(input, options, function(err, deflated) {});
-zopfli.zlib(input, options, function(err, zlibed) {});
-zopfli.gzip(input, options, function(err, gziped) {});
+const zopfli = require('node-zopfli-es')
+const input = new Buffer('I want to be compressed')
+zopfli.deflate(input, options, function(err, deflated) {})
+zopfli.zlib(input, options, function(err, zlibed) {})
+zopfli.gzip(input, options, function(err, gziped) {})
 ```
 
 #### Buffer (sync):
 
 ```js
-var zopfli = require('node-zopfli');
-var input = new Buffer('I want to be compressed');
-var deflated = zopfli.deflateSync(input, options);
-var zlibed = zopfli.zlibSync(input, options);
-var gziped = zopfli.gzipSync(input, options);
+const zopfli = require('node-zopfli-es')
+const input = new Buffer('I want to be compressed')
+const deflated = zopfli.deflateSync(input, options)
+const zlibed = zopfli.zlibSync(input, options)
+const gziped = zopfli.gzipSync(input, options)
 ```
 
 ### API
 
-#### compress(input, format, [options, callback])
+#### compress(input, [format = 'deflate', options = {}, callback])
 
-`input` is the input buffer
+`input` is the input buffer (or string)
 
-`format` can be one of `deflate`, `zlib` and `gzip`
+`format` can be one of `deflate`, `zlib` and `gzip`, `deflate` is the default if omitted
 
-`callback`, if present, gets two arguments `(err, buffer)` where `err` is an error object, if any, and `buffer` is the resultant compressed data.
+`callback`, if present, gets two arguments
+`(err, buffer)` where `err` is an error object, if any, and `buffer` is the compressed data.
+
+If format is a function and callback is not, format is set to `deflate` and callback gets set
+If options is a function and callback is not, options are set to `{}` and callback gets set
 
 If no callback is provided, it returns an A+ Promise.
 
 ##### aliases
 
 `deflate`, `zlib` and `gzip` methods are aliases on `compress` without `format` argument.
+
+#### deflate(input, [options = {}, callback])
+
+#### zlib(input, [options = {}, callback])
+
+#### gzip(input, [options = {}, callback])
+
 
 #### Options
 
@@ -108,7 +120,7 @@ Here are the options with defaults values you can pass to zopfli:
   numiterations: 15,
   blocksplitting: true,
   blocksplittinglast: false,
-  blocksplittingmax: 15
+  blocksplittingmax: 15,
 }
 ```
 
@@ -128,28 +140,42 @@ Maximum amount of blocks to split into (0 for unlimited, but this can give extre
 ## Build from sources
 
 ```shell
-git clone https://github.com/pierreinglebert/node-zopfli --recursive
-cd node-zopfli
+git clone https://github.com/jaeh/node-zopfli-es --recursive
+cd node-zopfli-es
 npm install
 ```
 
 ## Tests
-mocha is used for tests, you can run them with:
+[@magic/test](https://github.com/magic/test) and is used for tests, you can run them with:
 
 ```shell
 npm test
 ```
+The npm test command also runs nyc to create coverage reports.
 
+Fast testing without coverage:
 
-[npm-image]: https://img.shields.io/npm/v/node-zopfli.svg
-[npm-url]: https://www.npmjs.com/package/node-zopfli
-[waffle-image]: https://badge.waffle.io/pierreinglebert/node-zopfli.svg
-[waffle-url]: https://waffle.io/pierreinglebert/node-zopfli
-[travis-image]: https://img.shields.io/travis/pierreinglebert/node-zopfli/master.svg
-[travis-url]: https://travis-ci.org/pierreinglebert/node-zopfli
-[coveralls-image]: https://img.shields.io/coveralls/pierreinglebert/node-zopfli.svg
-[coveralls-url]: https://coveralls.io/r/pierreinglebert/node-zopfli?branch=master
-[dep-image]: https://img.shields.io/david/pierreinglebert/node-zopfli.svg
-[dep-url]: https://david-dm.org/pierreinglebert/node-zopfli
-[devDep-image]: https://img.shields.io/david/dev/pierreinglebert/node-zopfli.svg
-[devDep-url]: https://david-dm.org/pierreinglebert/node-zopfli#info=devDependencies
+```shell
+npm start
+```
+
+## Formatting
+
+[@magic/test](https://github.com/magic/test) also includes prettier:
+
+```shell
+# equal to: prettier --write
+npm run format
+
+# equal to: prettier --list-different
+npm run format:check
+```
+
+[npm-image]: https://img.shields.io/npm/v/node-zopfli-es.svg
+[npm-url]: https://www.npmjs.com/package/node-zopfli-es
+[travis-image]: https://img.shields.io/travis/jaeh/node-zopfli-es/master.svg?label=Linux%20build
+[travis-url]: https://travis-ci.org/jaeh/node-zopfli-es
+[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/node-zopfli-es/master.svg?label=Windows%20build
+[appveyor-url]: https://ci.appveyor.com/project/jaeh/node-zopfli-es/branch/master
+[coveralls-image]: https://coveralls.io/repos/github/jaeh/node-zopfli-es/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/r/jaeh/node-zopfli-es?branch=master
