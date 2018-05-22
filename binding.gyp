@@ -47,7 +47,7 @@
         }
       },
 
-      "target_name": "<(module_name)",
+      "target_name": "zopfli",
       'lflags': ['-lm'],
       "include_dirs": [
         "zopfli/src/zopfli",
@@ -81,11 +81,11 @@
     {
       "target_name": "action_after_build",
       "type": "none",
-      "dependencies": ["<(module_name)"],
+      "dependencies": ["zopfli"],
       "copies": [
         {
-          "files": ["<(PRODUCT_DIR)/<(module_name).node"],
-          "destination": "<(module_path)"
+          "files": ["<(PRODUCT_DIR)/zopfli.node"],
+          "destination": "./lib/binding"
         }
       ]
     }
