@@ -1,34 +1,34 @@
 /* jshint mocha: true */
 
-'use strict';
+'use strict'
 
-var chai = require('chai');
-var fs = require('fs');
-var path = require('path');
-var exec = require('child_process').exec;
-var assert = chai.assert;
+const { is } = require('@magic/test')
 
+const util = require('util')
+const path = require('path')
+const fs = require('fs')
+const cp = require('child_process')
+const xc = util.promisify(cp.exec)
+const exists = util.promisify(fs.exists)
+const unlink = util.promisify(fs.unlink)
 
-describe('zopfli cli', function() {
-  it('should fail without arguments', function(done) {
-    exec(
-      'node ' + path.join(__dirname, '../bin/zopfli'),
-      function(error, stdout, stderr) {
-        assert.isNotNull(error);
-        done();
-      }
-    );
-  });
+const binary = `node ${path.join(__dirname, '..', 'bin', 'zopfli')}`
 
-  it('should compress files', function(done) {
-    var fixture = path.join(__dirname, 'fixtures/test.css');
-    exec(
-      'node ' + path.join(__dirname, '../bin/zopfli') + ' ' + fixture,
-      function(error, stdout, stderr) {
-        assert.equal(error, null);
-        assert.equal(stderr, '');
-        done();
-      }
-    );
-  });
-});
+const fixture = path.join(__dirname, '.fixtures', 'test.css')
+const zipped = `${fixture}.gz`
+
+const before = async () => {
+  try {
+    await unlink(zipped)
+  } catch (e) {}
+}
+
+module.exports = [
+  { fn: new Promise(r => cp.exec(binary, r)), expect: is.error, info: 'fail without arguments' },
+  {
+    fn: async () => await xc(`${binary} ${fixture}`),
+    expect: async () => await exists(zipped),
+    before,
+    info: 'zipped file exists after zipping',
+  },
+]
