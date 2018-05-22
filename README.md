@@ -1,12 +1,11 @@
-# node-zopfli
+# node-zopfli-es
+
+Update of [https://npmjs.com/package/node-zopfli](node-zopfli) which is unmaintained.
 
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Dependency Status][dep-image]][dep-url]
-[![devDependency Status][devDep-image]][devDep-url]
-[![Stories in Ready][waffle-image]][waffle-url]
 
 Node.js bindings for [Zopfli](https://en.wikipedia.org/wiki/Zopfli) compressing library.
 Compress gzip files 5% better compared to gzip.
@@ -24,7 +23,7 @@ It is considerably slower than gzip (~100x) so you may want to use it only for s
 ### Install
 
 ```shell
-npm install node-zopfli
+npm install node-zopfli-es
 ```
 
 or if you want zopfli binary globally
@@ -155,15 +154,9 @@ npm test
 
 [npm-image]: https://img.shields.io/npm/v/node-zopfli.svg
 [npm-url]: https://www.npmjs.com/package/node-zopfli-es
-[waffle-image]: https://badge.waffle.io/pierreinglebert/node-zopfli.svg
-[waffle-url]: https://waffle.io/pierreinglebert/node-zopfli
-[travis-image]: https://img.shields.io/travis/pierreinglebert/node-zopfli/master.svg?label=Linux%20build
-[travis-url]: https://travis-ci.org/pierreinglebert/node-zopfli
-[appveyor-image]: https://img.shields.io/appveyor/ci/pierreinglebert/node-zopfli/master.svg?label=Windows%20build
-[appveyor-url]: https://ci.appveyor.com/project/pierreinglebert/node-zopfli/branch/master
-[coveralls-image]: https://img.shields.io/coveralls/pierreinglebert/node-zopfli.svg
-[coveralls-url]: https://coveralls.io/r/pierreinglebert/node-zopfli?branch=master
-[dep-image]: https://img.shields.io/david/pierreinglebert/node-zopfli.svg
-[dep-url]: https://david-dm.org/pierreinglebert/node-zopfli
-[devDep-image]: https://img.shields.io/david/dev/pierreinglebert/node-zopfli.svg
-[devDep-url]: https://david-dm.org/pierreinglebert/node-zopfli#info=devDependencies
+[travis-image]: https://img.shields.io/travis/jaeh/node-zopfli-es/master.svg?label=Linux%20build
+[travis-url]: https://travis-ci.org/jaeh/node-zopfli-es
+[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/node-zopfli-es/master.svg?label=Windows%20build
+[appveyor-url]: https://ci.appveyor.com/project/jaeh/node-zopfli-es/branch/master
+[coveralls-image]: https://img.shields.io/coveralls/jaeh/node-zopfli-es.svg
+[coveralls-url]: https://coveralls.io/r/jaeh/node-zopfli-es?branch=master
