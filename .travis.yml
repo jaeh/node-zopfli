@@ -44,9 +44,8 @@ install:
   - npm install
 
 script:
+  - npm run lint
   - npm run test-cov
 
 after_success:
   - npm run coveralls
-  - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
-  - if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" && ${TRAVIS_OS_NAME} == "osx" ]]; then ./node_modules/.bin/node-pre-gyp package publish; fi;
