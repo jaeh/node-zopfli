@@ -1,7 +1,7 @@
 'use strict';
 
-var fs = require('fs');
-var zopfli = require('../zopfli.js');
+const fs = require('fs');
+const zopfli = require('node-zopfli-es');
 
 fs.createReadStream('file.js')
   .pipe(new zopfli.createGzip())
