@@ -14,6 +14,7 @@ program
   .usage('[options] file destfile')
   .option('--lossy_transparent', 'Allow altering hidden colors of fully transparent pixels')
   .option('--lossy', 'Convert 16-bit per channel images to 8-bit per channel')
+  /* eslint max-len: [2, 300, 2] */
   .option('--filter_strategies', 'Filter strategies to try : "zero", "one", "two", "three", "four", "minimum", "entropy", "predefined", "brute", if none, it will be guessed automatically')
   .option('--keepchunks', 'Chunks to keep')
   .option('--iterations=<n>', 'Number of iterations for small images < 200 KiB', parseInt)

@@ -2,6 +2,8 @@
 
 'use strict';
 
+/* global Promise */
+
 var program = require('commander');
 var fs = require('fs');
 var zopfli = require('../lib/zopfli');
