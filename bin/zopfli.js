@@ -32,8 +32,8 @@ if (program.verbose) {
   options.verbose = program.verbose
 }
 
-const method = zopfli.createGzip
-const extension = 'gz'
+let method = zopfli.createGzip
+let extension = 'gz'
 
 if (program.deflate) {
   method = zopfli.createDeflate
