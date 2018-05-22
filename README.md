@@ -1,6 +1,6 @@
 # node-zopfli-es
 
-Update of [https://npmjs.com/package/node-zopfli](node-zopfli) which is unmaintained.
+Update of [node-zopfli](https://npmjs.com/package/node-zopfli).
 
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
@@ -29,7 +29,7 @@ npm install node-zopfli-es
 or if you want zopfli binary globally
 
 ```shell
-npm install -g node-zopfli
+npm install -g node-zopfli-es
 ```
 
 ### Binary (from command line)
@@ -140,23 +140,42 @@ Maximum amount of blocks to split into (0 for unlimited, but this can give extre
 ## Build from sources
 
 ```shell
-git clone https://github.com/pierreinglebert/node-zopfli --recursive
-cd node-zopfli
+git clone https://github.com/jaeh/node-zopfli-es --recursive
+cd node-zopfli-es
 npm install
 ```
 
 ## Tests
-mocha is used for tests, you can run them with:
+[@magic/test](https://github.com/magic/test) and is used for tests, you can run them with:
 
 ```shell
 npm test
 ```
+The npm test command also runs nyc to create coverage reports.
 
-[npm-image]: https://img.shields.io/npm/v/node-zopfli.svg
+Fast testing without coverage:
+
+```shell
+npm start
+```
+
+## Formatting
+
+[@magic/test](https://github.com/magic/test) also includes prettier:
+
+```shell
+# equal to: prettier --write
+npm run format
+
+# equal to: prettier --list-different
+npm run format:check
+```
+
+[npm-image]: https://img.shields.io/npm/v/node-zopfli-es.svg
 [npm-url]: https://www.npmjs.com/package/node-zopfli-es
 [travis-image]: https://img.shields.io/travis/jaeh/node-zopfli-es/master.svg?label=Linux%20build
 [travis-url]: https://travis-ci.org/jaeh/node-zopfli-es
 [appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/node-zopfli-es/master.svg?label=Windows%20build
 [appveyor-url]: https://ci.appveyor.com/project/jaeh/node-zopfli-es/branch/master
-[coveralls-image]: https://img.shields.io/coveralls/jaeh/node-zopfli-es.svg
+[coveralls-image]: https://coveralls.io/repos/github/jaeh/node-zopfli-es/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/r/jaeh/node-zopfli-es?branch=master
