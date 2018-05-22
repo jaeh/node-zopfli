@@ -1,28 +1,28 @@
 #!/usr/bin/env node
 
-'use strict'
+const program = require('commander')
+const fs = require('fs')
+const path = require('path')
+const zopfli = require('../lib/zopfli')
 
-var program = require('commander')
-var fs = require('fs')
-var path = require('path')
-var zopfli = require('../lib/zopfli')
+// const filterStrategyInfo = [
+//   'Filter strategies to try :',
+//   '"zero", "one", "two", "three", "four", "minimum", "entropy", "predefined", "brute"',
+//   'if none, it will be guessed automatically',
+// ].join(' ')
 
 program
   .version(require('../package.json').version)
   .usage('[options] file destfile')
   .option('--lossy_transparent', 'Allow altering hidden colors of fully transparent pixels')
   .option('--lossy', 'Convert 16-bit per channel images to 8-bit per channel')
-  /* eslint max-len: [2, 300, 2] */
-  .option(
-    '--filter_strategies',
-    'Filter strategies to try : "zero", "one", "two", "three", "four", "minimum", "entropy", "predefined", "brute", if none, it will be guessed automatically',
-  )
-  .option('--keepchunks', 'Chunks to keep')
+  // .option('--filter_strategies', filterStrategyInfo)
+  // .option('--keepchunks', 'Chunks to keep')
   .option('--iterations=<n>', 'Number of iterations for small images < 200 KiB', parseInt)
   .option('--iterations_large=<n>', 'Number of iterations for large images > 200 KiB', parseInt)
   .parse(process.argv)
 
-var options = {
+const options = {
   lossy_transparent: false,
   lossy_8bit: false,
   filter_strategies: [],

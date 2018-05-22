@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-'use strict'
-
-/* global Promise */
-
-var program = require('commander')
-var fs = require('fs')
-var zopfli = require('../lib/zopfli')
+const program = require('commander')
+const fs = require('fs')
+const zopfli = require('../lib/zopfli')
 
 program
   .version(require('../package.json').version)
@@ -19,7 +15,7 @@ program
   .option('-v, --verbose', 'Verbose')
   .parse(process.argv)
 
-var options = {
+const options = {
   verbose: false,
   verbose_more: false,
   numiterations: 15,
@@ -36,8 +32,8 @@ if (program.verbose) {
   options.verbose = program.verbose
 }
 
-var method = zopfli.createGzip
-var extension = 'gz'
+const method = zopfli.createGzip
+const extension = 'gz'
 
 if (program.deflate) {
   method = zopfli.createDeflate
@@ -55,18 +51,16 @@ if (program.args.length === 0) {
   program.outputHelp()
   process.exit(1)
 } else {
-  Promise.all(
-    program.args.map(function(item) {
-      return new Promise(function(resolve, reject) {
-        fs
-          .createReadStream(item)
-          .on('error', reject)
-          .pipe(method(options))
-          .on('error', reject)
-          .pipe(fs.createWriteStream(item + '.' + extension))
-          .on('error', reject)
-          .on('finish', resolve)
-      })
-    }),
+  const mapper = (item) => new Promise((resolve, reject) =>
+    fs
+      .createReadStream(item)
+      .on('error', reject)
+      .pipe(method(options))
+      .on('error', reject)
+      .pipe(fs.createWriteStream(item + '.' + extension))
+      .on('error', reject)
+      .on('finish', resolve)
   )
+
+  Promise.all(program.args.map(mapper))
 }
