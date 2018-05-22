@@ -1,5 +1,5 @@
 {
-  "name": "node-zopfli",
+  "name": "node-zopfli-es",
   "description": "Bindings for Zopfli compressing lib. Compress gzip files 5% better than gzip.",
   "version": "2.0.2",
   "author": "Pierre Inglebert <pierre.inglebert@gmail.com>",
@@ -35,12 +35,10 @@
     "node-gyp": "3.6.2"
   },
   "devDependencies": {
+    "@magic/test": "github:magic/test",
     "async": "2.6.1",
-    "chai": "4.1.2",
     "coveralls": "3.0.1",
     "eslint": "4.19.1",
-    "istanbul": "0.4.5",
-    "mocha": "5.2.0",
     "randomstring": "1.1.5"
   },
   "bin": {
@@ -55,11 +53,13 @@
     "binding.gyp"
   ],
   "scripts": {
+    "start": "t -p",
     "coveralls": "coveralls < ./coverage/lcov.info",
     "lint": "eslint .",
-    "mocha": "mocha test",
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test",
-    "test": "npm run lint && npm run mocha"
+    "test": "t",
+    "format": "f -w",
+    "format:check": "f"
   },
   "main": "lib/zopfli.js",
   "gypfile": true
