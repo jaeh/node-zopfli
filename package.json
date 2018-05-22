@@ -18,13 +18,13 @@
     "deflate",
     "es6"
   ],
-  "homepage": "https://github.com/jaeh/node-zopfli",
+  "homepage": "https://github.com/jaeh/node-zopfli-es",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaeh/node-zopfli.git"
+    "url": "https://github.com/jaeh/node-zopfli-es.git"
   },
   "bugs": {
-    "url": "https://github.com/jaeh/node-zopfli/issues"
+    "url": "https://github.com/jaeh/node-zopfli-es/issues"
   },
   "engines": {
     "node": ">=8.11.2"
@@ -52,7 +52,8 @@
   ],
   "scripts": {
     "start": "t -p",
-    "coveralls": "coveralls < ./coverage/lcov.info",
+    "coveralls": "npm run report | coveralls",
+    "report": "nyc report --reporter=text-lcov",
     "lint": "eslint .",
     "test-cov": "t",
     "test": "t",
