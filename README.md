@@ -2,6 +2,8 @@
 
 Update of [node-zopfli](https://npmjs.com/package/node-zopfli).
 
+Node version dependency has been pushed to 8.11.2 lts.
+
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
