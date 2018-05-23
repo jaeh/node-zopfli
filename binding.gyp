@@ -51,7 +51,6 @@
       "defines": [ "NAPI_DISABLE_CPP_EXCEPTIONS" ],
       "lflags": ["-lm"],
       "include_dirs": [
-      "<!(node -e \"require('nan')\")",
         "zopfli/src/zopfli",
         "zopfli/src/zopflipng",
         "<!@(node -p \"require('node-addon-api').include\")"
