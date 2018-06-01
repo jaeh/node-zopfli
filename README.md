@@ -148,7 +148,7 @@ npm install
 ```
 
 ## Tests
-[@magic/test](https://github.com/magic/test) and is used for tests, you can run them with:
+[@magic/test](https://github.com/magic/test) is used, you can run it with:
 
 ```shell
 npm test
