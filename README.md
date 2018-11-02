@@ -9,7 +9,7 @@ Node version dependency has been pushed to 8.11.2 lts.
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 
-Node.js bindings for [Zopfli](https://en.wikipedia.org/wiki/Zopfli) compressing library.
+Node.js bindings for [Zopfli](https://en.wikipedia.org/wiki/Zopfli) compression library.
 Compress gzip files 5% better compared to gzip.
 
 It is considerably slower than gzip (~100x) so you may want to use it only for static content and cached resources.
@@ -20,9 +20,7 @@ It is considerably slower than gzip (~100x) so you may want to use it only for s
 * Python 2.7
 * GCC and Make (Unix) or Visual Studio Express (Windows), see [Node Building tools](https://github.com/TooTallNate/node-gyp#installation)
 
-## Usage
-
-### Install
+## Install
 
 ```shell
 npm install node-zopfli-es
@@ -34,6 +32,7 @@ or if you want zopfli binary globally
 npm install -g node-zopfli-es
 ```
 
+## Usage examples
 ### Binary (from command line)
 To gzip a file
 
@@ -47,7 +46,6 @@ To compress a png file
 zopflipng file.png out.png
 ```
 
-### Usage examples
 #### Stream (async):
 
 ```js
@@ -172,6 +170,13 @@ npm run format
 # equal to: prettier --list-different
 npm run format:check
 ```
+
+## Typescript
+Someone pushed the type definitions to DefinitelyTyped:
+```bash
+npm install @types/node-zopfli-es
+```
+[Typescript definitions](https://www.npmjs.com/package/@types/node-zopfli-es)
 
 [npm-image]: https://img.shields.io/npm/v/node-zopfli-es.svg
 [npm-url]: https://www.npmjs.com/package/node-zopfli-es
