@@ -1,14 +1,15 @@
 {
   "name": "node-zopfli-es",
   "description": "Bindings for Zopfli compressing lib. Compress gzip files 5% better than gzip.",
-  "version": "0.0.2",
-  "author": "Pierre Inglebert <pierre.inglebert@gmail.com>",
+  "version": "0.0.3",
+  "author": "Jascha Ehrenreich <j@jaeh.at>",
   "contributors": [
     "duralog <funisher@gmail.com>",
     "MayhemYDG <stepien.nicolas@gmail.com>",
     "XhmikosR <xhmikosr@gmail.com>",
-    "Jascha Ehrenreich <j@jaeh.at>",
-    "Hitesh Kanwathirtha"
+    "Pierre Inglebert <pierre.inglebert@gmail.com>",
+    "Hitesh Kanwathirtha",
+    "Silas Rech"
   ],
   "license": "MIT",
   "keywords": [
