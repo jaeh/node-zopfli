@@ -31,21 +31,21 @@ module.exports = {
     // Stylistic Issues
     // list: https://github.com/eslint/eslint/tree/master/docs/rules//stylistic-issues
     // use single quote, we can use double quote when escape chars
-    quotes: [2, "single", "avoid-escape"],
-    'quote-props': [2, "as-needed"],
+    quotes: [2, 'single', 'avoid-escape'],
+    'quote-props': [2, 'as-needed'],
     // 2 space indentation
     indent: [2, 2],
     // add space after comma
     'comma-spacing': 2,
     // commas dangle always
     'comma-dangle': [
-      "error",
+      'error',
       {
-        arrays: "only-multiline",
-        objects: "only-multiline",
-        imports: "only-multiline",
-        exports: "only-multiline",
-        functions: "only-multiline"
+        arrays: 'only-multiline',
+        objects: 'only-multiline',
+        imports: 'only-multiline',
+        exports: 'only-multiline',
+        functions: 'only-multiline',
       },
     ],
     // no semi-colon
@@ -55,19 +55,22 @@ module.exports = {
     // require spaces return, throw, case
     'keyword-spacing': 2,
     // no space before function, eg. 'function()'
-    'space-before-function-paren': ["error", {
-        "anonymous": "always",
-        "named": "never",
-        "asyncArrow": "ignore",
-    }],
+    'space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'always',
+        named: 'never',
+        asyncArrow: 'ignore',
+      },
+    ],
     // require space before blocks, eg 'function() {}'
-    'space-before-blocks': [2, "always"],
+    'space-before-blocks': [2, 'always'],
     // require parens for Constructor
     'new-parens': 2,
     // max 100 length
     'max-len': [2, 100, 2],
     // max 2 consecutive empty lines
-    'no-multiple-empty-lines': [2, {max: 2}],
+    'no-multiple-empty-lines': [2, { max: 2 }],
     // require newline at end of files
     'eol-last': 2,
     // no trailing spaces

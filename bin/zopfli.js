@@ -51,16 +51,17 @@ if (program.args.length === 0) {
   program.outputHelp()
   process.exit(1)
 } else {
-  const mapper = (item) => new Promise((resolve, reject) =>
-    fs
-      .createReadStream(item)
-      .on('error', reject)
-      .pipe(method(options))
-      .on('error', reject)
-      .pipe(fs.createWriteStream(item + '.' + extension))
-      .on('error', reject)
-      .on('finish', resolve)
-  )
+  const mapper = item =>
+    new Promise((resolve, reject) =>
+      fs
+        .createReadStream(item)
+        .on('error', reject)
+        .pipe(method(options))
+        .on('error', reject)
+        .pipe(fs.createWriteStream(item + '.' + extension))
+        .on('error', reject)
+        .on('finish', resolve),
+    )
 
   Promise.all(program.args.map(mapper))
 }
