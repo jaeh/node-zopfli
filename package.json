@@ -1,7 +1,7 @@
 {
   "name": "node-zopfli-es",
   "description": "Bindings for Zopfli compressing lib. Compress gzip files 5% better than gzip.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jascha Ehrenreich <j@jaeh.at>",
   "contributors": [
     "duralog <funisher@gmail.com>",
@@ -34,13 +34,13 @@
   },
   "dependencies": {
     "commander": "2.19.0",
-    "node-addon-api": "1.5.0",
+    "node-addon-api": "1.6.2",
     "node-gyp": "3.8.0"
   },
   "devDependencies": {
-    "@magic/test": "github:magic/test",
+    "@magic/test": "0.0.2",
     "coveralls": "3.0.2",
-    "eslint": "5.8.0"
+    "eslint": "5.10.0"
   },
   "bin": {
     "zopfli": "bin/zopfli.js",
