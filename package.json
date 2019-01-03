@@ -40,7 +40,7 @@
   "devDependencies": {
     "@magic/test": "github:magic/test",
     "coveralls": "3.0.2",
-    "eslint": "5.9.0"
+    "eslint": "5.11.1"
   },
   "bin": {
     "zopfli": "bin/zopfli.js",
@@ -61,7 +61,8 @@
     "test-cov": "t",
     "test": "t",
     "format": "f -w",
-    "format:check": "f"
+    "format:check": "f",
+    "update:zopfli": "cd zopfli && git pull && cd .."
   },
   "main": "lib/zopfli.js",
   "gypfile": true
