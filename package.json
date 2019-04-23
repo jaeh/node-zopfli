@@ -38,7 +38,7 @@
     "node-gyp": "3.8.0"
   },
   "devDependencies": {
-    "@magic/test": "0.0.7",
+    "@magic/test": "0.0.9",
     "coveralls": "3.0.3",
     "eslint": "5.16.0"
   },
