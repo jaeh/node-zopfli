@@ -62,7 +62,7 @@
     "test": "t --exclude .eslintrc.js bin/zopflipng.js",
     "format": "f -w",
     "format:check": "f",
-    "update:zopfli": "cd zopfli && git pull && cd .."
+    "update:zopfli": "cd zopfli && git pull origin master && cd .."
   },
   "main": "lib/zopfli.js",
   "gypfile": true
