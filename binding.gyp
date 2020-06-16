@@ -77,7 +77,12 @@
       "cflags": [
         "-Wall",
         "-O3"
-      ]
+      ],
+      "xcode_settings": {
+        "OTHER_CFLAGS": [
+          "-Wno-unused-function"
+        ],
+      }
     },
     {
       "target_name": "action_after_build",
