@@ -54,12 +54,12 @@
     "binding.gyp"
   ],
   "scripts": {
-    "start": "t -p",
+    "start": "npm test",
     "coveralls": "npm run report | coveralls",
     "report": "nyc report --reporter=text-lcov",
     "lint": "eslint .",
     "test-cov": "t",
-    "test": "t --exclude .eslintrc.js bin/zopflipng.js",
+    "test": "t -p",
     "format": "f -w",
     "format:check": "f",
     "update:zopfli": "cd zopfli && git pull origin master && cd .."
