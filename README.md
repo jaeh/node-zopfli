@@ -15,13 +15,6 @@ created to fix some security issues which have since been resolved.
 
 Since node-zopfli is maintained again, switching back to it is advised.
 
-### NODEJS LATEST (14.2 enforced), ecmascript module version
-
-This library has been ported to ecmascript modules,
-[npm i @magic/zopfli](https://github.com/magic/zopfli)
-
-magic enforces node >= 14.2 across all it's libraries.
-
 ---------------------------------------------------------------------------
 
 [![NPM version][npm-image]][npm-url]
